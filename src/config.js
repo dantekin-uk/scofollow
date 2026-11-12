@@ -50,10 +50,11 @@ export const SOCIALS = [
 ]
 
 /**
- * Deployed base URL the QR code points to (GitHub Pages project site).
- * This is fixed so visitors can never change where the QR leads.
+ * Optional explicit base URL for the QR code. Leave empty to auto-detect the
+ * deployed origin at runtime, which works on both GitHub Pages and Vercel.
+ * It is never editable by visitors, so the QR always leads to a fixed page.
  */
-export const PUBLIC_BASE_URL = 'https://dantekin79-creator.github.io/follow'
+export const PUBLIC_BASE_URL = ''
 
 /** Path of the participant landing page (hash route). */
 export const ENTRY_PATH = '/follow'

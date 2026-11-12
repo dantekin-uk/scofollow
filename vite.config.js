@@ -1,10 +1,11 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Served as a GitHub Pages project site at /follow/, so production assets
-// need that base. Dev server keeps the root base.
+// GitHub Pages serves this as a project site at /follow/, so production assets
+// need that base. Vercel serves from the domain root, so it needs '/'.
+// The dev server keeps the root base.
 export default defineConfig(({ command }) => ({
-  base: command === 'build' ? '/follow/' : '/',
+  base: command === 'build' ? (process.env.VERCEL ? '/' : '/follow/') : '/',
   plugins: [react()],
   server: {
     host: true,

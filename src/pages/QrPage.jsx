@@ -3,10 +3,16 @@ import { QRCodeSVG } from 'qrcode.react'
 import { Link } from 'react-router-dom'
 import { BRAND, ENTRY_PATH, PUBLIC_BASE_URL, SOCIALS } from '../config.js'
 
-/** Deployed base the QR always points to. Falls back to the current origin. */
+/**
+ * The QR always points to the page it is served from — derived automatically
+ * from the deployment, never editable by visitors.
+ */
 function fixedBase() {
   if (PUBLIC_BASE_URL) return PUBLIC_BASE_URL.replace(/\/$/, '')
-  if (typeof window !== 'undefined') return window.location.origin
+  if (typeof window !== 'undefined') {
+    const basePath = import.meta.env.BASE_URL.replace(/\/$/, '')
+    return window.location.origin + basePath
+  }
   return ''
 }
 
